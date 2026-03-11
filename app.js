@@ -134,15 +134,16 @@ function formatTime(iso) {
 }
 
 // ---- Google Sheets sync ----
+// Uses GET + URL params — more reliable with Apps Script redirects
 async function sendToSheet(entry) {
   if (!SHEET_URL) return;
   try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entry),
+    const params = new URLSearchParams({
+      text: entry.text,
+      time: entry.time,
+      context: entry.context,
     });
+    await fetch(`${SHEET_URL}?${params.toString()}`, { mode: 'no-cors' });
   } catch (e) {
     console.warn('Sheet sync failed — saved locally only', e);
   }

@@ -1,4 +1,4 @@
-const CACHE = 'salon-v1';
+const CACHE = 'salon-v2';
 const ASSETS = ['/', '/index.html', '/style.css', '/app.js', '/manifest.json'];
 
 self.addEventListener('install', e => {
