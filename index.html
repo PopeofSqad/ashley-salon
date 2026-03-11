@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Ashley's Salon" />
+  <title>Ashley's Salon</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Home Screen -->
+    <div id="screen-home" class="screen active">
+      <header>
+        <h1>Hey, Ashley 👋</h1>
+        <p class="subtitle">What do you need?</p>
+      </header>
+
+      <div class="button-grid">
+        <button class="big-btn btn-inventory" onclick="goTo('screen-inventory')">
+          <span class="btn-icon">🧴</span>
+          <span class="btn-label">Inventory</span>
+          <span class="btn-sub">Log what you used</span>
+        </button>
+
+        <button class="big-btn btn-cash" onclick="goTo('screen-cash')">
+          <span class="btn-icon">💵</span>
+          <span class="btn-label">Cash</span>
+          <span class="btn-sub">Log a cash transaction</span>
+        </button>
+
+        <button class="big-btn btn-followup" onclick="goTo('screen-followup')">
+          <span class="btn-icon">💌</span>
+          <span class="btn-label">Follow-Ups</span>
+          <span class="btn-sub">Who to check in with</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Inventory Screen -->
+    <div id="screen-inventory" class="screen">
+      <header>
+        <button class="back-btn" onclick="goTo('screen-home')">← Back</button>
+        <h2>🧴 Inventory</h2>
+      </header>
+
+      <div class="voice-area">
+        <p class="prompt-text">Tap the mic and say what you used.</p>
+        <p class="example-text">Example: <em>"Used two bottles of color 7N and one 20 volume"</em></p>
+        <button class="mic-btn" id="mic-inventory" onclick="startVoice('inventory')">
+          <span class="mic-icon">🎙️</span>
+          <span class="mic-label">Tap to Speak</span>
+        </button>
+        <div id="transcript-inventory" class="transcript"></div>
+        <button class="confirm-btn hidden" id="confirm-inventory" onclick="confirmLog('inventory')">✅ Log It</button>
+      </div>
+
+      <div class="log-list" id="log-inventory"></div>
+    </div>
+
+    <!-- Cash Screen -->
+    <div id="screen-cash" class="screen">
+      <header>
+        <button class="back-btn" onclick="goTo('screen-home')">← Back</button>
+        <h2>💵 Cash</h2>
+      </header>
+
+      <div class="voice-area">
+        <p class="prompt-text">Tap the mic and say the amount and what it was for.</p>
+        <p class="example-text">Example: <em>"Eighty dollars for a cut and color"</em></p>
+        <button class="mic-btn" id="mic-cash" onclick="startVoice('cash')">
+          <span class="mic-icon">🎙️</span>
+          <span class="mic-label">Tap to Speak</span>
+        </button>
+        <div id="transcript-cash" class="transcript"></div>
+        <button class="confirm-btn hidden" id="confirm-cash" onclick="confirmLog('cash')">✅ Log It</button>
+      </div>
+
+      <div class="log-list" id="log-cash"></div>
+    </div>
+
+    <!-- Follow-Up Screen -->
+    <div id="screen-followup" class="screen">
+      <header>
+        <button class="back-btn" onclick="goTo('screen-home')">← Back</button>
+        <h2>💌 Follow-Ups</h2>
+      </header>
+
+      <div class="followup-area">
+        <p class="prompt-text">Clients who are due for a check-in will show up here automatically.</p>
+        <div id="followup-list" class="followup-list">
+          <div class="empty-state">No follow-ups yet — data loads once connected to your bookings.</div>
+        </div>
+      </div>
+
+      <div class="voice-area">
+        <p class="prompt-text" style="margin-top: 2rem;">Log a new appointment manually:</p>
+        <p class="example-text">Example: <em>"Sarah Jones, haircut and color, today"</em></p>
+        <button class="mic-btn" id="mic-followup" onclick="startVoice('followup')">
+          <span class="mic-icon">🎙️</span>
+          <span class="mic-label">Tap to Speak</span>
+        </button>
+        <div id="transcript-followup" class="transcript"></div>
+        <button class="confirm-btn hidden" id="confirm-followup" onclick="confirmLog('followup')">✅ Log It</button>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast hidden"></div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
