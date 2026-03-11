@@ -1,11 +1,10 @@
 // ============================================================
 // Ashley's Salon App
 // ============================================================
-// Backend: Google Apps Script webhook (set SHEET_URL below)
-// Until connected, all data saves to localStorage only.
+// Backend: Google Apps Script webhook
 // ============================================================
 
-const SHEET_URL = ''; // TODO: paste Google Apps Script web app URL here
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbz7fUcczJy8Oh9mFOt-ewwv4TfC9TKnbQ5Kcll4_YUS-1_CsC9d9SQuj3a1rTrM71Tj/exec';
 
 // ---- Screen navigation ----
 function goTo(screenId) {
